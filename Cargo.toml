@@ -4,3 +4,13 @@ version = "0.1.0"
 authors = ["harrison <notallama@gmail.com>"]
 
 [dependencies]
+glutin = "*"
+gl = "*"
+libc = "*"
+zmq = "*"
+protobuf = "*"
+rand = "*"
+time = "*"
+prost = "0.1.0"
+
+mzmr-proto = { git = "ssh://git@github.com/mzmr-eng/proto-rust.git" }
