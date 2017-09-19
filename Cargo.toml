@@ -3,6 +3,9 @@ name = "eyes"
 version = "0.1.0"
 authors = ["harrison <notallama@gmail.com>"]
 
+
+build = "build/build.rs"
+
 [dependencies]
 glutin = "*"
 gl = "*"
