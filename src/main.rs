@@ -8,7 +8,7 @@ extern crate rand;
 extern crate time;
 extern crate prost;
 
-use mzmr_proto::*;
+//use mzmr_proto::*;
 use mzmr_proto::socket::*;
 use mzmr_proto::cmd::*;
 use mzmr_proto::cmd::command::*;
@@ -17,14 +17,11 @@ use glutin::GlContext;
 use rand::Rng;
 
 use std::collections::HashMap;
-use std::ops::Deref;
 
 include!(concat!(env!("OUT_DIR"), "/default.shader"));
 
 mod gl_util;
 use gl_util::*;
-
-use prost::Message;
 
 
 
@@ -85,13 +82,7 @@ fn main() {
     let mut attribute_buffers : HashMap<String, HashMap<String,AttributeBuffer>> = HashMap::new();
     let mut index_buffers : HashMap<String, HashMap<String,IndexBuffer>> = HashMap::new();
 
-    let mut rng = rand::thread_rng();
-
     let mut running = true;
-    let mut frame_id : u64 = rng.gen();
-
-
-    let start_time = time::precise_time_ns();
 
     let mut msg_buf : Vec<u8> = Vec::new();
     msg_buf.resize(2048,0);
@@ -170,7 +161,7 @@ fn main() {
                         }
 
                         draw_call.set_program(&prog);
-                        for &ShaderAttributeInfo { ref name, location, dim } in &prog.inputs {
+                        for &ShaderAttributeInfo { ref name, ..} in &prog.inputs {
                             for namespace in &attribute_namespaces {
                                 if let Some(some_namespace) = attribute_buffers.get(namespace) {
                                     if let Some(attrs) = some_namespace.get(name) {
